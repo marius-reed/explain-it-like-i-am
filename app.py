@@ -57,6 +57,7 @@ if 'chat_history' not in st.session_state:
 
 def add_message():
     user_message = st.session_state.user_input
+    st.session_state.chat_history = []
     st.session_state.chat_history.append(user_message)
     # Placeholder for a response (Here you can add logic for bot responses)
     query_result = query_model(profession, user_message)
@@ -65,7 +66,7 @@ def add_message():
 
 
 st.text_input("Type your message here...", key="user_input", on_change=add_message)
-st.text_area("Chat", value="\n".join(st.session_state.chat_history), height=300, key="chat_display", disabled=True)
+st.text_area("This happened in your meeting", value="\n".join(st.session_state.chat_history), height=300, key="chat_display", disabled=True)
 
 
 
