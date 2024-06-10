@@ -12,7 +12,7 @@ vsc = VectorSearchClient(
     service_principal_client_secret=sp_client_secret
 )
 
-index = vsc.get_index(endpoint_name="vs_endpoint", index_name="workspace.vs_demo.fm_api_examples_vs_index")
+index = vsc.get_index(endpoint_name="vs_endpoint", index_name="workspace.meetings.meeting_notes_index")
 
 
 def context_string_generator(user_input):

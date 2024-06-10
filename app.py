@@ -6,29 +6,51 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
+
+
+personas_dict = {
+    "Rocket Scientist":"rocket_scientist", 
+    "Developer":"developer", 
+    "10 Year old":"10_year_old", 
+    "Golden Retreiver":"golden_retriver", 
+    "CEO":"ceo"}
+
+
+
+title = "TESTTEST"
+
+
 with st.container(border=True):
     # Add title
-    st.markdown("<h1 style='text-align: center;'>Explain it to me as I am a... app 🚀</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align: center;'>Explain it to me as I am a... 🚀</h1>", unsafe_allow_html=True)
 
     # Add subtitle
-    st.markdown("<h3 style='text-align: center; color: gray;'>The no shame application to figure out what really happened in that meeting you missed! 🤔 Upload the meeting minutes and ask what happend!</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; color: gray;'>The 'no-shame-application' to figure out what really happened in that meeting you missed! 🤔 Upload the meeting minutes and ask what happend!</h3>", unsafe_allow_html=True)
+
 
 # Sidebar layout
 st.sidebar.header('I am a:')
-profession = st.sidebar.selectbox(
+profession_input = st.sidebar.selectbox(
     'Select a profession:',
-    ('rocket_scientist', 'Developer', '10 Year old', 'Golden Retreiver', 'ceo')
+    ('Rocket Scientist', 'Developer', '10 Year old', 'Golden Retreiver', 'CEO')
 )
 
 
 # Display the selected profession
-st.sidebar.write(f'You selected: {profession}.')
+st.sidebar.write(f'You selected: {profession_input}.')
+
+profession = personas_dict[profession_input]
+
+
+proffesion_to_pic = {"rocket_scientist":"scientist.jpg","developer":"developer.jpg", "10_year_old":"baby_emoji.jpg", "golden_retriver":"GR.jpg", "ceo":"bb.jpg"}
+
 
 #diaply image of persona
-st.sidebar.image("./assets/bb.jpg", use_column_width=True)
+st.sidebar.image(f"assets/{proffesion_to_pic[profession]}", use_column_width=True)
 
 # File upload in the sidebar
-st.sidebar.header('Upload data:')
+st.sidebar.header('Upload you meeting minutes:')
 uploaded_file = st.sidebar.file_uploader("Choose a file", type=["csv", "txt", "xlsx"])
 table_name = "workspace.meetings.notes"
 write_file_to_delta_table(uploaded_file, table_name)
