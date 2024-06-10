@@ -1,14 +1,17 @@
 from personas import personas
 from openai import OpenAI
 import os
-
+import httpx
 
 def chat_with_me_open_ai(model_name:str, system_message:str, user_input: str, _max_tokens:int=256) -> str:
+
+    http_client = httpx.Client(verify=False)
     
-    DATABRICKS_TOKEN = os.getenv('AI_DATABRICKS_TOKEN')
+    DATABRICKS_TOKEN = os.getenv('DB_WORKSPACE_TOKEN')
     client = OpenAI(
         api_key=DATABRICKS_TOKEN,
-        base_url= os.getenv('AI_DATABRICKS_BASE_URL')
+        base_url= os.getenv('DB_WORSKAPCE_SERVICE_ENDPOINT_URL'),
+        http_client=http_client
     )
 
     chat_completion = client.chat.completions.create(

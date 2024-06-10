@@ -4,3 +4,4 @@ databricks-genai-inference==0.2.3
 openai==1.33.0
 databricks-vectorsearch
 python-dotenv
+httpx
