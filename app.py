@@ -2,6 +2,9 @@ import streamlit as st
 from model import query_model
 from upload_to_databricks_table import write_file_to_delta_table
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 with st.container(border=True):
     # Add title
@@ -9,7 +12,6 @@ with st.container(border=True):
 
     # Add subtitle
     st.markdown("<h3 style='text-align: center; color: gray;'>The no shame application to figure out what really happened in that meeting you missed! 🤔 Upload the meeting minutes and ask what happend!</h3>", unsafe_allow_html=True)
-
 
 # Sidebar layout
 st.sidebar.header('I am a:')
