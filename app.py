@@ -4,6 +4,7 @@ from upload_to_databricks_table import write_file_to_delta_table
 import os
 from dotenv import load_dotenv
 
+
 load_dotenv()
 
 

@@ -16,6 +16,18 @@ index = vsc.get_index(endpoint_name="vs_endpoint", index_name="workspace.meeting
 
 
 def context_string_generator(user_input):
+
+    workspace_url = os.getenv('DB_WORKSPACE_URL')
+    sp_client_id = os.getenv('SP_CLIENT_ID')
+    sp_client_secret = os.getenv('SP_CLIENT_SECRET')
+
+    vsc = VectorSearchClient(
+        workspace_url=workspace_url,
+        service_principal_client_id=sp_client_id,
+        service_principal_client_secret=sp_client_secret
+    )
+
+    index = vsc.get_index(endpoint_name="vs_endpoint", index_name="workspace.meetings.meeting_notes_index")
     # get context from vector search
     raw_context = index.similarity_search(columns=["text", "title"],
                             query_text=user_input,
