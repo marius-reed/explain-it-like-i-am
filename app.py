@@ -17,10 +17,6 @@ personas_dict = {
     "CEO":"ceo"}
 
 
-
-title = "TESTTEST"
-
-
 with st.container(border=True):
     # Add title
     st.markdown("<h1 style='text-align: center;'>Explain it to me as I am a... 🚀</h1>", unsafe_allow_html=True)

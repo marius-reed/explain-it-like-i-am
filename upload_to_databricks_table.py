@@ -12,8 +12,7 @@ def write_file_to_delta_table(uploaded_file, table_name):
         todays_date = date.today()
 
         w = WorkspaceClient(host=os.getenv('DB_WORKSPACE_URL'), token=os.getenv('DB_WORKSPACE_TOKEN'))
-        
-        sql_query = f"INSERT INTO {table_name } VALUES ('{todays_date}-{filename}', '{string_data}', '{todays_date}','{filename}')"
+        sql_query = f'INSERT INTO {table_name } VALUES ("{todays_date}-{filename}", "{string_data}", "{todays_date}","{filename}")'
         w.statement_execution.execute_statement(statement=sql_query, warehouse_id='e072e72d0a4864f2')
 
 
